@@ -29,14 +29,14 @@ function render(leads) {
 }
 
 function getCurrentTab() {
-    chrome.tabs.query({ active: true, currentWindow: true}, function(tabs) {
-      myLeads.push(tabs[0].url)
-      localStorage.setItem("myLeads", JSON.stringify(myLeads))
-      render(myLeads)
-    })
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    myLeads.push(tabs[0].url);
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    render(myLeads);
+  });
 }
 
-inputBtn.addEventListener("click", function () {
+inputBtn.addEventListener("click", () => {
   myLeads.push(inputEl.value);
   inputEl.value = "";
   localStorage.setItem("myLeads", JSON.stringify(myLeads));
@@ -50,5 +50,5 @@ deleteBtn.addEventListener("dblclick", (e) => {
 });
 
 tabBtn.addEventListener("click", () => {
-    getCurrentTab()
-})
+  getCurrentTab();
+});
