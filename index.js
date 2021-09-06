@@ -10,32 +10,33 @@ let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 // check if leadsFromLocalStorage exists
 if (leadsFromLocalStorage) {
   myLeads = leadsFromLocalStorage;
-  renderLeads();
+  render(myLeads);
 }
 
-inputBtn.addEventListener("click", function () {
-  myLeads.push(inputEl.value);
-  inputEl.value = "";
-  localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  renderLeads();
-});
-
-deleteBtn.addEventListener("dblclick", (e) => {
-  localStorage.clear();
-  myLeads = [];
-  renderLeads();
-});
-
-function renderLeads() {
+function render(leads) {
   let listItems = "";
-  for (let i = 0; i < myLeads.length; i++) {
+  for (let i = 0; i < leads.length; i++) {
     listItems += `
             <li>
-                <a target='_blank' href='${myLeads[i]}'>
-                    ${myLeads[i]}
+                <a target='_blank' href='${leads[i]}'>
+                    ${leads[i]}
                 </a>
             </li>
         `;
   }
   ulEl.innerHTML = listItems;
 }
+
+inputBtn.addEventListener("click", function () {
+  myLeads.push(inputEl.value);
+  inputEl.value = "";
+  localStorage.setItem("myLeads", JSON.stringify(myLeads));
+  render(myLeads);
+});
+
+deleteBtn.addEventListener("dblclick", (e) => {
+  localStorage.clear();
+  myLeads = [];
+  render(myLeads);
+});
+
